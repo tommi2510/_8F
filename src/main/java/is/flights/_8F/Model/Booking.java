@@ -18,7 +18,6 @@ public class Booking {
     @Id
     @GeneratedValue
     private Long id;
-    private Long userId;
     @ManyToMany
     private Set<Passenger> passengers;
     @NonNull
