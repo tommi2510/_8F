@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -21,13 +23,12 @@ public class Booking {
     @ManyToMany
     private Set<Passenger> passengers;
     @NonNull
-    @Column(unique=true, nullable = false)
-    private String email;
-
 
     @ManyToOne(cascade=CascadeType.PERSIST)
     private User user;
 
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Flight flight;
+
+    private Date created;
 }

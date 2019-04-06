@@ -33,7 +33,9 @@ public class Passenger {
     private boolean priorityB;
     @Column(name = "firstClass", nullable = false, updatable = false)
     private boolean firstClass;
-    @Column(name = "bookingId", nullable = false, updatable = false)
-    private long bookingId;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    private Booking booking;
+
 }
 
