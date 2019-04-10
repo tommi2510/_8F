@@ -1,5 +1,6 @@
 package is.flights._8F.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "flight") // If you want to specify a table name, you can do so here
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Flight {
 
     // Declare that this attribute is the id

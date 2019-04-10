@@ -2,8 +2,12 @@ package is.flights._8F.Controller;
 
 import is.flights._8F.Model.Flight;
 import is.flights._8F.Repositories.FlightRepository;
+import javafx.scene.control.Pagination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +15,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import org.springframework.data.domain.Page;
 
 @RestController
 @RequestMapping("/api")
@@ -26,18 +40,57 @@ class FlightController {
     }
 
     @GetMapping("/flights")
-    Collection<Flight> flights(@RequestParam("departure") Optional<String> departure,
-                               @RequestParam("arrival") Optional<String> arrival) {
+    Page<Flight> flights(@RequestParam("departure") Optional<String> departure,
+                               @RequestParam("arrival") Optional<String> arrival,
+                               @RequestParam("scheduledTime") Optional<String> scheduledTime,
+                               @RequestParam("passenger") Optional<Integer> passenger,
+                               @RequestParam("passenger") Optional<Integer> page) {
 
         String currentDeparture = departure.orElse("No departure");
         String currentArrival = arrival.orElse("No arrival");
+        String currentDate = scheduledTime.orElse("No date");
+        int currentPassenger = passenger.orElse(-1);
+        int currentPage = page.orElse(1);
 
-        if (currentDeparture.equals("No departure") || currentArrival.equals("No arrival")) {
-            return flightRepository.findAll();
+
+        Pageable pagination = PageRequest.of(currentPage - 1, 10, Sort.by("scheduledTime").ascending());
+
+
+        if (currentDeparture.equals("No departure") ||
+            currentArrival.equals("No arrival") ||
+            currentDate.equals("No date") ||
+            currentPassenger <= 0
+        ) {
+            Date date = new Date();
+            return flightRepository.findByScheduledTimeGreaterThan(date, pagination);
         }
 
-        return flightRepository.findByDepartureAndArrival(currentDeparture, currentArrival);
+        try {
+            Date date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z (zzzz)").parse(currentDate);
+            System.out.println(date);
 
+            LocalDate locallinn = date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+            LocalDateTime startOfDay = LocalDateTime.of(locallinn, LocalTime.MIDNIGHT);
+            LocalDateTime endOfDay = LocalDateTime.of(locallinn, LocalTime.MAX);
+
+
+            Timestamp startDate = Timestamp.valueOf(startOfDay);
+            Timestamp endDate = Timestamp.valueOf(endOfDay);
+
+            System.out.println(startOfDay);
+            System.out.println(endOfDay);
+            System.out.println("passenger: " + currentPassenger);
+
+            return flightRepository.findByDepartureAndArrivalAndScheduledTimeBetweenAndSeatsAvailableGreaterThanEqual(currentDeparture, currentArrival, startDate, endDate, currentPassenger, pagination);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        Date date = new Date();
+        return flightRepository.findByScheduledTimeGreaterThan(date, pagination);
     }
 
     @GetMapping("/search")

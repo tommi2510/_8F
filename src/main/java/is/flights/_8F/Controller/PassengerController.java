@@ -52,6 +52,14 @@ class PassengerController {
         return ResponseEntity.ok().body(result);
     }
 
+//    @PostMapping("/passengers")
+//    ResponseEntity<Passenger> createPassengers(@Valid @RequestBody Passenger passengers) throws URISyntaxException {
+////        log.info("Request to create passenger: {}", passenger);
+//        Passenger result = passengerRepository.saveAll(passengers);
+//        return ResponseEntity.created(new URI("/api/passenger/" + result.getId()))
+//                .body(result);
+//    }
+
     @DeleteMapping("/passenger/{id}")
     public ResponseEntity<?> deletePassenger(@PathVariable Long id) {
         log.info("Request to delete passenger: {}", id);

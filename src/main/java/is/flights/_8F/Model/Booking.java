@@ -1,5 +1,6 @@
 package is.flights._8F.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,24 +11,25 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "booking")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Booking {
 
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToMany
-    private Set<Passenger> passengers;
+//    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+//    private Set<Passenger> passengers;
     @NonNull
-
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private User user;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Flight flight;
 
     private Date created;
