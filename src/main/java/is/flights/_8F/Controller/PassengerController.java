@@ -1,9 +1,14 @@
 package is.flights._8F.Controller;
 
+import is.flights._8F.Model.Booking;
 import is.flights._8F.Model.Passenger;
+import is.flights._8F.Model.User;
 import is.flights._8F.Repositories.PassengerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +40,13 @@ class PassengerController {
         Optional<Passenger> passenger = passengerRepository.findById(id);
         return passenger.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/bookings/{booking}/passenger")
+    Page<Passenger> getPassengerByBooking(Booking booking) {
+
+        Pageable pagination = PageRequest.of(0, 10);
+        return passengerRepository.findByBooking(booking, pagination);
     }
 
     @PostMapping("/passenger")
