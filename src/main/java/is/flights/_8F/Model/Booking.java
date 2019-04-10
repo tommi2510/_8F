@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -32,5 +33,13 @@ public class Booking {
     @ManyToOne
     private Flight flight;
 
+    @OneToMany
+    private List<Passenger> passengers;
+
     private Date created;
+
+    @PrePersist
+    protected void onCreate() {
+        created = new Date();
+    }
 }

@@ -62,7 +62,7 @@ class FlightController {
             currentPassenger <= 0
         ) {
             Date date = new Date();
-            return flightRepository.findByScheduledTimeGreaterThan(date, pagination);
+            return flightRepository.findByScheduledTimeGreaterThanAndSeatsAvailableGreaterThanEqual(date, currentPassenger, pagination);
         }
 
         try {
@@ -80,8 +80,6 @@ class FlightController {
             Timestamp startDate = Timestamp.valueOf(startOfDay);
             Timestamp endDate = Timestamp.valueOf(endOfDay);
 
-            System.out.println(startOfDay);
-            System.out.println(endOfDay);
             System.out.println("passenger: " + currentPassenger);
 
             return flightRepository.findByDepartureAndArrivalAndScheduledTimeBetweenAndSeatsAvailableGreaterThanEqual(currentDeparture, currentArrival, startDate, endDate, currentPassenger, pagination);
@@ -90,7 +88,7 @@ class FlightController {
         }
 
         Date date = new Date();
-        return flightRepository.findByScheduledTimeGreaterThan(date, pagination);
+        return flightRepository.findByScheduledTimeGreaterThanAndSeatsAvailableGreaterThanEqual(date, currentPassenger, pagination);
     }
 
     @GetMapping("/search")

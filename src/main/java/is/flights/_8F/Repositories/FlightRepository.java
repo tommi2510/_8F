@@ -13,7 +13,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     List<Flight> findByDepartureAndArrivalAndScheduledTimeBetween(String departure, String arrival, Date startOf, Date endOf);
 
-    Page<Flight> findByScheduledTimeGreaterThan( Date date, Pageable pageable);
+    Page<Flight> findByScheduledTimeGreaterThanAndSeatsAvailableGreaterThanEqual( Date date, int passengers, Pageable pageable);
 
     Page<Flight> findByDepartureAndArrivalAndScheduledTimeBetweenAndSeatsAvailableGreaterThanEqual(String departure, String arrival, Date startOf, Date endOf, int passengers, Pageable pageable);
 }
