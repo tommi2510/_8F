@@ -44,13 +44,15 @@ class FlightController {
                                @RequestParam("arrival") Optional<String> arrival,
                                @RequestParam("scheduledTime") Optional<String> scheduledTime,
                                @RequestParam("passenger") Optional<Integer> passenger,
-                               @RequestParam("passenger") Optional<Integer> page) {
+                               @RequestParam("page") Optional<Integer> page) {
 
         String currentDeparture = departure.orElse("No departure");
         String currentArrival = arrival.orElse("No arrival");
         String currentDate = scheduledTime.orElse("No date");
         int currentPassenger = passenger.orElse(-1);
         int currentPage = page.orElse(1);
+
+
 
 
         Pageable pagination = PageRequest.of(currentPage - 1, 10, Sort.by("scheduledTime").ascending());
@@ -62,7 +64,9 @@ class FlightController {
             currentPassenger <= 0
         ) {
             Date date = new Date();
-            return flightRepository.findByScheduledTimeGreaterThanAndSeatsAvailableGreaterThanEqual(date, currentPassenger, pagination);
+            return flightRepository.findBySeatsAvailableGreaterThanEqualAndScheduledTimeGreaterThan(currentPassenger, date, pagination);
+        } else {
+
         }
 
         try {
@@ -88,7 +92,7 @@ class FlightController {
         }
 
         Date date = new Date();
-        return flightRepository.findByScheduledTimeGreaterThanAndSeatsAvailableGreaterThanEqual(date, currentPassenger, pagination);
+        return flightRepository.findBySeatsAvailableGreaterThanEqualAndScheduledTimeGreaterThan(currentPassenger, date, pagination);
     }
 
     @GetMapping("/search")
