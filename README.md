@@ -22,6 +22,7 @@ Github: `https://github.com/tommi2510/_8F.git`
 
     * #### URL Params
         **Required**:
+
         `id=[Long]`
 
     * #### Data Params
@@ -65,7 +66,7 @@ Github: `https://github.com/tommi2510/_8F.git`
         **Content**: `{firstName: "Leroy", lastName: "Jenkins", email: "leroyJenk@gmail.com"}`
 
     * #### Sample Call:
-          ```javascript
+         ```javascript
           $.ajax({
             url: "/users",
             dataType: "json",
@@ -80,7 +81,6 @@ Github: `https://github.com/tommi2510/_8F.git`
             }
           });
           ```
-
 ## Flight
 
 * ### Get Flight
@@ -103,16 +103,17 @@ Github: `https://github.com/tommi2510/_8F.git`
             **Content**: `{id: 6, flightNo: "6F1435", scheduledTime: "2019-07-23 05:57:12", departure: "Reykjavík", arrival: "Akureyri", seats: 76, seatsAvailable: 43, price: 15000}`
 
     * #### Sample Call:
-      ```javascript
-      $.ajax({
-        url: "/flights/6",
-        dataType: "json",
-        type : "GET",
-        success : function(r) {
-          console.log(r);
-        }
-      });
-      ```
+    ```javascript
+          $.ajax({
+            url: "/flights/6",
+            dataType: "json",
+            type : "GET",
+            success : function(r) {
+              console.log(r);
+            }
+          });
+    ```
+
 * #### Search flights
     Returns json data about flights
 
