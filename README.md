@@ -15,20 +15,20 @@ Github: `https://github.com/tommi2510/_8F.git`
     Returns json data about user
 
     * ## Url
-        ###### /users/:id
+        /users/:id
 
     * ## Method:
-        ###### `GET`
+        `GET`
 
     * ## URL Params
-        ###### `id=[Long]`
+        `id=[Long]`
 
     * ## Data Params
-        ###### None
+        None
 
     * ## Success Response:
-        * ###### **Code**: 200  
-            ###### **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
+        * **Code**: 200  
+            **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
 
     * ## Sample Call:
 
@@ -43,26 +43,26 @@ Github: `https://github.com/tommi2510/_8F.git`
       });
       ```
 * ## **Create User**
-    ###### Returns json data about user
+    Returns json data about user
 
     * ## Url
-        ###### /users
+        /users
 
     * ## Method:
-        ###### `POST`
+        `POST`
 
     * ## URL Params
-        ###### None
+        None
 
     * ## Data Params
-        ##### **Required**:
-        ###### `firstName: "Leroy"`
-        ###### `lastName: "Jenkings"`
-        ###### `email: "leroyJenk@gmail.com`
+        **Required**:
+        `firstName: "Leroy"`
+        `lastName: "Jenkings"`
+        `email: "leroyJenk@gmail.com`
 
     * ## Success Response:
-        * ###### **Code**: 200  
-            ###### **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
+        * **Code**: 200  
+            **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
 
     * ## Sample Call:
 
