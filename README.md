@@ -9,97 +9,96 @@ Github: `https://github.com/tommi2510/_8F.git`
 
 # **API endpoints**
 
-## **User**
+### **User**
 
-* ## **Get User**
+* ### Get User
     Returns json data about user
 
-    * ## Url
+    * #### Url
         /users/:id
 
-    * ## Method:
+    * #### Method:
         `GET`
 
-    * ## URL Params
+    * #### URL Params
+        **Required**:
         `id=[Long]`
 
-    * ## Data Params
+    * #### Data Params
         None
 
-    * ## Success Response:
+    * #### Success Response:
         * **Code**: 200  
-            **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
+        **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
 
-    * ## Sample Call:
-
-      ```javascript
-      $.ajax({
-        url: "/users/6",
-        dataType: "json",
-        type : "GET",
-        success : function(r) {
-          console.log(r);
-        }
-      });
-      ```
-* ## **Create User**
+        * #### Sample Call:
+          ```javascript
+          $.ajax({
+            url: "/users/6",
+            dataType: "json",
+            type : "GET",
+            success : function(r) {
+              console.log(r);
+            }
+          });
+          ```
+* ### Create User
     Returns json data about user
 
-    * ## Url
+    * #### Url
         /users
 
-    * ## Method:
-        `POST`
+    * #### Method:
+         `POST`
 
-    * ## URL Params
+    * #### URL Params
         None
 
-    * ## Data Params
+    * #### Data Params
         **Required**:
+
         `firstName: "Leroy"`
         `lastName: "Jenkings"`
         `email: "leroyJenk@gmail.com`
 
-    * ## Success Response:
+    * #### Success Response:
         * **Code**: 200  
-            **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
+        **Content**: `{id: 6, firstName: "Leroy", lastName: "Jenkings", email: "leroyJenk@gmail.com"}`
 
-    * ## Sample Call:
-
-      ```javascript
-      $.ajax({
-        url: "/users/6",
-        dataType: "json",
-        type : "GET",
-        success : function(r) {
-          console.log(r);
-        }
-      });
-      ```
+    * #### Sample Call:
+          ```javascript
+          $.ajax({
+            url: "/users/6",
+            dataType: "json",
+            type : "GET",
+            success : function(r) {
+              console.log(r);
+            }
+          });
+          ```
 
 ## Flight
 
-* ## **Get Flight**
-    ###### Returns json data about flight
+* ### Get Flight
+    Returns json data about flight
 
-    * ## Url
-        ###### /flights/:id
+    * #### Url
+        /flights/:id
 
-    * ## Method:
-        ###### `GET`
+    * #### Method:
+        `GET`
 
-    * ## URL Params
-        ###### `id=[Long]`
+    * #### URL Params
+        `id=[Long]`
 
-    * ## Data Params
-        ###### None
+    * #### Data Params
+        None
 
-    * ##Success Response:
-        * ###### **Code**: 200  
+    * #### Success Response:
+        * **Code**: 200  
             ###### **Content**: `{id: 6, flightNo: "Leroy", scheduledTime: "Jenkings", departure: "Reykjavík", arrival: "Akureyri", seats: 76, seatsAvailable: 43, price: 15000}`
 
-    * ## Sample Call:
-
+    * #### Sample Call:
       ```javascript
       $.ajax({
         url: "/flights/6",
@@ -111,32 +110,31 @@ Github: `https://github.com/tommi2510/_8F.git`
       });
       ```
 * #### Search flights
-    ###### Returns json data about flights
+    Returns json data about flights
 
-    * ## Url
-        ###### /flights
+    * #### Url
+        /flights
 
-    * ## Method:
-        ###### `GET`
+    * #### Method:
+        `GET`
 
-    * ## URL Params
+    * #### URL Params
         ###### **Required**:
-        ###### `departure=[String]`
-        ###### `arrival=[String]`
-        ###### `scheduledTime=[Date]`
-        ###### `passengers=[int]`
-        ###### **Optional**:
-        ###### `page=[int]`
+        `departure=[String]`
+        `arrival=[String]`
+        `scheduledTime=[Date]`
+        `passengers=[int]`
+        **Optional**:
+        `page=[int]`
 
-    * ## Data Params
-        ###### None
+    * #### Data Params
+        None
 
-    * ## Success Response:
-        * ###### **Code**: 200  
-            ###### **Content**: `{id: 6, flightNo: "Leroy", scheduledTime: "2019-07-23 05:57:12", departue: "Reykjavík", arrival: "Akureyri"}`
+    * #### Success Response:
+        * **Code**: 200  
+            **Content**: `{id: 6, flightNo: "Leroy", scheduledTime: "2019-07-23 05:57:12", departue: "Reykjavík", arrival: "Akureyri"}`
 
-    * ## Sample Call:
-
+    * #### Sample Call:
       ```javascript
       $.ajax({
         url: "/flights/6",
