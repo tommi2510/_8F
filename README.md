@@ -57,6 +57,7 @@ Github: `https://github.com/tommi2510/_8F.git`
 
     * #### Data Params
         **Required**:
+
         `firstName: [String]`
         `lastName: [String]`
         `email: [String]`
@@ -93,6 +94,8 @@ Github: `https://github.com/tommi2510/_8F.git`
         `GET`
 
     * #### URL Params
+        **Required**:
+
         `id=[Long]`
 
     * #### Data Params
@@ -124,11 +127,13 @@ Github: `https://github.com/tommi2510/_8F.git`
         `GET`
 
     * #### URL Params
-        ###### **Required**:
+        **Required**:
+
         `departure=[String]`
         `arrival=[String]`
         `scheduledTime=[Date]`
         `passengers=[int]`
+
         **Optional**:
         `page=[int]`
 
