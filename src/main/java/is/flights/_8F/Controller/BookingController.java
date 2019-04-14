@@ -3,11 +3,8 @@ package is.flights._8F.Controller;
 import is.flights._8F.Model.Booking;
 import is.flights._8F.Model.User;
 import is.flights._8F.Repositories.BookingRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +21,6 @@ import org.springframework.data.domain.Page;
 @RequestMapping("/api")
 class BookingController {
 
-    private final Logger log = LoggerFactory.getLogger(GroupController.class);
     private BookingRepository bookingRepository;
 
     public BookingController(BookingRepository bookingRepository) {
@@ -52,7 +48,6 @@ class BookingController {
 
     @PostMapping("/booking")
     ResponseEntity<Booking> createBooking(@Valid @RequestBody Booking booking) throws URISyntaxException {
-        log.info("Request to create booking: {}", booking);
         Booking result = bookingRepository.save(booking);
         return ResponseEntity.created(new URI("/api/booking/" + result.getId()))
                 .body(result);
@@ -60,14 +55,12 @@ class BookingController {
 
     @PutMapping("/booking")
     ResponseEntity<Booking> updateBooking(@Valid @RequestBody Booking booking) {
-        log.info("Request to update booking: {}", booking);
         Booking result = bookingRepository.save(booking);
         return ResponseEntity.ok().body(result);
     }
 
     @DeleteMapping("/booking/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable Long id) {
-        log.info("Request to delete booking: {}", id);
         bookingRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

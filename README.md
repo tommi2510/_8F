@@ -117,7 +117,7 @@ Github: `https://github.com/tommi2510/_8F.git`
           });
     ```
 
-* #### Search flights
+* ### Search flights
     Returns json data about flights
 
     * #### Url
@@ -173,6 +173,8 @@ Github: `https://github.com/tommi2510/_8F.git`
         `GET`
 
     * #### URL Params
+        **Required**:
+
         `id=[Long]`
 
     * #### Data Params
@@ -206,6 +208,8 @@ Github: `https://github.com/tommi2510/_8F.git`
         None
 
     * #### Data Params
+        **Required**:
+
         `user: [Object]`
         `user.id: [Long]`
         `flight: [Object]`,
@@ -217,7 +221,34 @@ Github: `https://github.com/tommi2510/_8F.git`
 
     * #### Success Response:
         * **Code**: 200  
-            **Content**: ``
+            **Content**:
+            ```javascript
+            created: "2019-04-14T22:48:29.319+0000",
+            id: 2,
+            user: {
+                id: 6,
+                firstName: "Leroy"
+                lastName: "Jenkins"
+                email: "leroyJenk@gmail.com"
+            },
+            flight: {
+                id: 6, flightNo: "6F1435",
+                scheduledTime: "2019-07-23 05:57:12",
+                departure: "Reykjavík",
+                arrival: "Akureyri",
+                seats: 76,
+                seatsAvailable: 43,
+                price: 15000
+            }
+            passengers: [
+                {
+                    id: 1,
+                    firstName: "Leroy",
+                    lastName: "Jenkins",
+                    email: "leroyJenk@gmail.com"
+                }
+            ]
+            ```
 
     * #### Sample Call:
       ```javascript
@@ -234,6 +265,7 @@ Github: `https://github.com/tommi2510/_8F.git`
             },
             passengers: [
                 {
+                    id: 1,
                     firstName: "Leroy",
                     lastName: "Jenkins",
                     luggage: 1,
@@ -259,6 +291,8 @@ Github: `https://github.com/tommi2510/_8F.git`
         `GET`
 
     * #### URL Params
+        **Required**:
+
         `id=[Long]`
 
     * #### Data Params
@@ -292,6 +326,8 @@ Github: `https://github.com/tommi2510/_8F.git`
         None
 
     * #### Data Params
+        **Required**:
+
         `firstName: [String]`
         `lastName: [String]`
 

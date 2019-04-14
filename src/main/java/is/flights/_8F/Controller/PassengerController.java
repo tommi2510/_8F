@@ -23,7 +23,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 class PassengerController {
 
-    private final Logger log = LoggerFactory.getLogger(GroupController.class);
     private PassengerRepository passengerRepository;
 
     public PassengerController(PassengerRepository passengerRepository) {
@@ -51,7 +50,6 @@ class PassengerController {
 
     @PostMapping("/passenger")
     ResponseEntity<Passenger> createPassenger(@Valid @RequestBody Passenger passenger) throws URISyntaxException {
-        log.info("Request to create passenger: {}", passenger);
         Passenger result = passengerRepository.save(passenger);
         return ResponseEntity.created(new URI("/api/passenger/" + result.getId()))
                 .body(result);
@@ -59,22 +57,14 @@ class PassengerController {
 
     @PutMapping("/passenger")
     ResponseEntity<Passenger> updatePassenger(@Valid @RequestBody Passenger passenger) {
-        log.info("Request to update passenger: {}", passenger);
         Passenger result = passengerRepository.save(passenger);
         return ResponseEntity.ok().body(result);
     }
 
-//    @PostMapping("/passengers")
-//    ResponseEntity<Passenger> createPassengers(@Valid @RequestBody Passenger passengers) throws URISyntaxException {
-////        log.info("Request to create passenger: {}", passenger);
-//        Passenger result = passengerRepository.saveAll(passengers);
-//        return ResponseEntity.created(new URI("/api/passenger/" + result.getId()))
-//                .body(result);
-//    }
+
 
     @DeleteMapping("/passenger/{id}")
     public ResponseEntity<?> deletePassenger(@PathVariable Long id) {
-        log.info("Request to delete passenger: {}", id);
         passengerRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
