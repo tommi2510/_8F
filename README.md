@@ -1,11 +1,19 @@
 # **Getting Started**
+
+## **Spring Boot Rest API - Backend**
 Github: `https://github.com/tommi2510/_8F.git`
-
-## **Spring Boot Rest API**
-
 1. Import the project in your favorite IDE and with Maven
 2. Run the app
 3. Make request to localhost:8080/api
+
+## **ReactJS - Frontend**
+Github: `https://github.com/tommi2510/_8F_REACT.git`
+**Requirements**:
+* NodeJS
+* Yarn
+
+1. `yarn install`
+2. `yarn start`
 
 # **API endpoints**
 
